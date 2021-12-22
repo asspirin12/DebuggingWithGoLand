@@ -12,7 +12,7 @@ RUN go build -o /goland-debugging/srv .
 
 # Get Delve from a GOPATH not from a Go Modules project
 WORKDIR /go/src/
-RUN go get github.com/go-delve/delve/cmd/dlv
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 # final stage
 FROM alpine:3.15.0
