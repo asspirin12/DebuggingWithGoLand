@@ -10,12 +10,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-const (
-	readTimeout  = 5
-	writeTimeout = 10
-	idleTimeout  = 120
-)
-
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain")
 	returnStatus := http.StatusOK
@@ -31,6 +25,11 @@ func main() {
 
 	m.HandleFunc("/", indexHandler)
 
+	var (
+		readTimeout  = time.Duration(5)
+		writeTimeout = time.Duration(10)
+		idleTimeout  = time.Duration(120)
+	)
 	srv := &http.Server{
 		Addr:         serverAddress,
 		ReadTimeout:  readTimeout * time.Second,
